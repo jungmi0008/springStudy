@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.memberMapper">
+
+	<!-- mybais-config.xml 에 typeAlias를 등록하지 않으면,
+		 아래와 같이 기술해야 한다.  
+	<select id="selectMember" resultType="com.example.dto.MemberVO">
+		SELECT ID, PW, NAME FROM TEST
+	</select>
+		 -->
+	
+	<!-- 태그에 id와 resultType을 기술한다.
+		id 는 후에 DAO에서 사용하기 위해 필요한 값이고,
+		resultType은 쿼리 실행 후에 데이터를 memberVO에 담겠다고 설정한 것이다. -->
+	<select id="selectMember" resultType="memberVO">
+		SELECT ID, PW, NAME FROM TEST
+	</select>
+	
+</mapper>
+	
+	
+	
+	
+	
+	
+	
