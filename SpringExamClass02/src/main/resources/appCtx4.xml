@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 	xmlns=			"http://www.springframework.org/schema/beans"
+		xmlns:context=	"http://www.springframework.org/schema/context"
+		xmlns:xsi=		"http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation=
+		   "http://www.springframework.org/schema/beans 
+			https://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+			https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+	
+	<bean id="memberDao" class="com.class1.spring.MemberDao"></bean>
+	
+	<bean id="memberRegSvc" class="com.class1.spring.MemberRegisterService">
+		<!--<constructor-arg ref="memberDao" />-->
+	</bean>
+
+	<bean id="printer" class="com.class1.spring.MemberPrinter"></bean>
+	<bean id="printer2" class="com.class1.spring.MemberPrinter"></bean>
+	
+	<bean id="infoPrinter" class="com.class1.spring.MemberInfoPrinter">
+		<!--
+		Autowired는 이 부분을 생략하게 해준다
+		<property name="memberDao" ref="memberDao"/>
+		<property name="printer" ref="printer"/>
+		-->
+	</bean>			
+			
+</beans>
+<!-- 
+@Autowired(required=false)
+ 	 required의 속성값이 false인 경우에도 주입할 의존 객체가 존재하면, 해당 객체를 @Autowired 적용 대상에 주입하게 된다.
+ 	 단지, required 속성 값이 false인 경우에는 주입할 의존 객체가 존재하지 않아도 익셉션을 발생시키지 않을 뿐이다.
+   
+[자동 주입과 명시적 의존 주입 간의 관계]
+	자동 주입과 명시적인 의존 주입 설정 <constructor-arg> 태그나 <property> 태그를 함께 사용할 수 있다.
+	이런 경우 명시적인 의존 주입 설정이 자동 주입에 우선한다.
+
+ -->
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
