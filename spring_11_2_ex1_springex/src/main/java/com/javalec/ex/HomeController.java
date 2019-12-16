@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";	//viewPage¸¦ homeÀ¸·Î ÇÏ°Ú´Ù´Â ¼Ò¸®. /WEB-INF/Views/ + home + .jsp
+		return "home";	//ì´ê²ƒì€ /WEB-INF/Views/ + home + .jspë¥¼ ì˜ë¯¸
 	}
 	
 }

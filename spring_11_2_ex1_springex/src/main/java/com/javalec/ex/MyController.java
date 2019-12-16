@@ -1,27 +1,33 @@
 package com.javalec.ex;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.javalec.ex.member.Member;
 
 @Controller
 public class MyController {
-	@RequestMapping("/view")	//	http://localhost:8888/ex/viewÇÏ¸é
+	@RequestMapping("/view")	//	http://localhost:8888/ex/viewí•˜ë©´
 	public String view() {
-		return "view";	//	http://localhost:8888/ex/WEB-INF/views/view.jsp°¡ ½ÇÇàµÊ
+		return "view";	//	http://localhost:8888/ex/WEB-INF/views/view.jspê°€ ì‹¤í–‰ë¨
 	}
 	
+	//ë°ì´í„°ë¥¼ ì „ë‹¬í•˜ëŠ” ë°©ë²•
 	@RequestMapping("/content/contentView")
 	public String content(Model model) {
-		//µ¥ÀÌÅÍ¸¦ Àü´ŞÇÏ´Â ¹æ¹ı
 		model.addAttribute("id","abcde");
 		return "/content/contentView";
 	}
 	
+	//ë°ì´í„°ë¥¼ ì „ë‹¬í•˜ëŠ” ë°©ë²•2
 	@RequestMapping("/board/reply")
 	public ModelAndView reply() {
-		//µ¥ÀÌÅÍ¸¦ Àü´ŞÇÏ´Â ¹æ¹ı2
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("id",30);
 		mv.setViewName("board/reply");
@@ -29,8 +35,64 @@ public class MyController {
 		return mv;
 	}
 	
+	//ë°ì´í„°ë¥¼ ì „ë‹¬í•˜ëŠ” ë°©ë²•3
+	@RequestMapping("/board/confirmId")
+	public String confirmId(HttpServletRequest request, Model model) {
+		//http://localhost:8888/ex/board/confirmId?id=abcd&pw=1234
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+		
+		model.addAttribute("id", id);
+		model.addAttribute("pw", pw);
+		
+		return "board/confirmId";
+	}
+	
+	//ë°ì´í„°ë¥¼ ì „ë‹¬í•˜ëŠ” ë°©ë²•4
+	@RequestMapping("/board/checkId")
+	public String checkId(@RequestParam("id") String id, @RequestParam("pw") int pw, Model model) {
+		//http://localhost:8888/ex/board/checkId?id=abcd&pw=1234
+		
+		model.addAttribute("id", id);
+		model.addAttribute("pw", pw);
+		
+		return "board/checkId";
+	}
+	
+	//ë°ì´í„°ë¥¼ ì „ë‹¬í•˜ëŠ” ë°©ë²•5
+//	@RequestMapping("/member/join")
+//	public String joinData(@RequestParam("name") String name,@RequestParam("id") String id, @RequestParam("pw") int pw, @RequestParam("email") String email, Model model) {
+//		//	http://localhost:8888/ex/member/join?name=í™ê¸¸ë™&id=abcd&pw=1234&email=abc@abc.com
+//		
+//		Member member = new Member();
+//		member.addAttribute("name", name);
+//		member.addAttribute("id", id);
+//		member.addAttribute("pw", pw);
+//		member.addAttribute("email", email);
+//		
+//		model.addAttribute("memberInfo", member);
+//	
+//		return "/member/join";
+//	}
+	
+	//ë°ì´í„°ë¥¼ ì „ë‹¬í•˜ëŠ” ë°©ë²•6(5ë²ˆì„ ê°„ë‹¨íˆ)
+	@RequestMapping("/member/join")
+	//	http://localhost:8888/ex/member/join?name=í™ê¸¸ë™&id=abcd&pw=1234&email=abc@abc.com
+	public String joinData(Member member) {
+		return "member/join";
+	}
+	
+	//ë°ì´í„°ë¥¼ ì „ë‹¬í•˜ëŠ” ë°©ë²•7
+	@RequestMapping("/student/{studentId}")
+	//	?studentId=10í•˜ëŠ” ê²ƒ ëŒ€ì‹ ì— {studentId}ë¼ê³  ì¨ì„œ ê°’ì„ ë°”ë¡œ ë°›ëŠ”ë‹¤.
+	//	http://localhost:8888/ex/student/10
+	public String getStudent(@PathVariable String studentId, Model model) {
+		model.addAttribute("studentId", studentId);
+		return "student/studentView";
+	}
+	
 /*
- * Å¬·¡½º À§¿¡ @RequestMappingÇÒ ¼ö ÀÖ´Ù. ±×·± °æ¿ì´Â ÆäÀÌÁö ÄÁÆ®·Ñ·¯°¡ ¸¹Àº °æ¿ì
+ * í´ë˜ìŠ¤ ìœ„ì— @RequestMappingí•  ìˆ˜ ìˆë‹¤. ê·¸ëŸ° ê²½ìš°ëŠ” í˜ì´ì§€ ì»¨íŠ¸ë¡¤ëŸ¬ê°€ ë§ì€ ê²½ìš°
  
 	@Controller
 	@RequestMapping("/board")
