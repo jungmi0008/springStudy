@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -92,7 +93,8 @@ public class MyController {
 	}
 	
 /*
- * 클래스 위에 @RequestMapping할 수 있다. 그런 경우는 페이지 컨트롤러가 많은 경우
+ * 데이터를 전달하는 방법 8
+ * 클래스 위에 @RequestMapping할 수 있다. 그런 경우는 페이지 컨트롤러가 많은 경우 .do같은 거라고 생각하면 된다.
  
 	@Controller
 	@RequestMapping("/board")
@@ -107,5 +109,20 @@ public class MyController {
 			return mv;
 		}
 */
+	@RequestMapping("/index")
+	public String index() {
+		return "index";
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/student")
+	public String goStudent(HttpServletRequest httpServletRequest, Model model) {
+		System.out.println("RequestMetho.GET");
+		
+		String id = httpServletRequest.getParameter("id");
+		System.out.println("id : "+id);
+		model.addAttribute("studentId", id);
+		
+		return "student/studentId";
+	}
 }
 
