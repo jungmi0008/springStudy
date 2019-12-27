@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.board.mappers.board">
+
+	<!-- 게시물 목록 -->
+	<select id="list" resultType="com.board.dto.BoardVO">
+	select	bno, title, content, writer, regDate, viewCnt
+	from	board
+	</select>	
+	
+	<!-- 게시물 작성 -->
+	<insert id="write" parameterType="com.board.dto.BoardVO">
+	insert	into board(title, content, writer)
+			values(#{title}, #{content}, #{writer})
+	</insert>
+	
+	<!-- 게시물 조회 -->
+	<select id="view" parameterType="int" resultType="com.board.dto.BoardVO">
+	select	bno, title, content, writer, regDate, viewCnt
+	from	board
+	where	bno = #{bno}
+	</select>
+	
+	<!-- 게시물 수정 -->
+	<update id="modify" parameterType="com.board.dto.BoardVO">
+	update	board
+	set		title = #{title}, content = #{content}, writer = #{writer}
+	where	bno = #{bno}
+	</update>
+
+	<!-- 게시물 삭제 -->
+	<delete id="delete"  parameterType="int">
+	delete	
+	from	board
+	where	bno = #{bno}
+	</delete>
+	
+	<!-- 게시물의 총 개수 -->
+	<select id="count" resultType="int">
+	select	count(bno) 
+	from	board
+	</select>
+	
+	<!-- 게시물 목록(페이징) : 매개변수(시작위치, 개수)-->
+	<!-- 게시물을 displayPost위치에서 postNum개수만큼 찾는다. -->
+	<select id="listPage" parameterType="hashMap" resultType="com.board.dto.BoardVO">
+	select	bno, title, writer, regDate, viewCnt
+	from	board
+	order by bno desc
+			limit #{displayPost}, #{postNum}
+	</select>
+	
+</mapper>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

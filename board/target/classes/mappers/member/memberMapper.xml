@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스를 기재한다. -->
+<!-- MemberDAOImpl에 사용한 namespace와 일치하도록 한다. -->
+<mapper namespace = "com.edu.mappers.member">
+
+	<!-- 회원정보 등록 -->
+	<insert id="insertMember" parameterType="com.member.dto.MemberDTO">
+	insert into member 
+	(id, passwd, name, reg_date, tel, address)
+	values (#{id}, #{passwd}, #{name}, now(), #{tel}, #{address})
+	</insert>
+	
+	<!-- 로그인 검사 -->
+	<select id="login_check" parameterType="com.member.dto.MemberDTO" resultType="String">
+	select	name	
+	from	member
+	where	id = #{id} and passwd = #{passwd}
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,87 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>게시물 리스트</title>
+	<link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<script src="/resources/js/jquery-3.4.1.js"></script>
+	<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+	<table class="table table-bordered table-striped table-hover">
+		<thead>
+			<tr class="info">
+				<th>번호</th>
+				<th>제 목</th>
+				<th>작성일</th>
+				<th>작성자</th>
+				<th>조회수</th>
+			</tr>
+		</thead>
+		<tbody>
+		<c:forEach items="${list}" var="list">
+			<tr>
+				<td>${list.bno}</td>
+				<td>
+					<a href="/board/view?bno=${list.bno}">${list.title}</a>
+				</td>
+				<td>${list.regDate}</td>
+				<td>${list.writer}</td>
+				<td>${list.viewCnt}</td>
+			</tr>
+		</c:forEach>
+		</tbody>
+	</table>
+	
+	<!-- 하단의 페이지번호가 보이는 부분 -->
+	<div class="col-sm-offset-4">
+		<c:if test="${prev }">
+			<span>[ <a href="/board/listPage?num=${startPageNum-1}">이전</a> ]</span>
+		</c:if>
+
+		<c:forEach begin="${startPageNum}" end="${endPageNum}" var="num">
+			<span>
+				<c:if test="${select != num}">
+					<a href="/board/listPage?num=${num}">${num}</a>
+				</c:if>
+				<c:if test="${select == num}">
+					<b>${num}</b>
+				</c:if>
+			</span>
+		</c:forEach>
+
+		<c:if test="${next }">
+			<span>[ <a href="/board/listPage?num=${endPageNum+1}">다음</a> ]</span>
+		</c:if>
+	</div>
+	
+	<!-- 
+	<div>
+		<c:forEach begin="1" end="${pageNum }" var="num">
+			<span>
+				<a href="/board/listPage?num=${num }">${num }</a>
+			</span>
+		</c:forEach>
+	</div>
+	-->
+
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
