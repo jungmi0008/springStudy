@@ -27,6 +27,9 @@ public interface BoardDAO {
 	//게시물 목록 (페이징)
 	public List<BoardVO> listPage(int displayPost, int postNum) throws Exception;
 	
+	//첨부파일 삭제
+	public void deleteFile(String fullName);
+	
 }
 
 

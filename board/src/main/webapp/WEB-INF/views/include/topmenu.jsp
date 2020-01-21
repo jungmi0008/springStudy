@@ -34,8 +34,24 @@
 					</li>
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							상품 관리 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="${path}/product/list.do">상품 목록</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							파일 관리 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="${path}/upload/uploadForm">파일 올리기(Form)</a></li>
+							<li><a href="${path}/upload/uploadAjax">파일 올리기(AJAX)</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 							로그인 관리 <span class="caret"></span></a>
 						<ul class="dropdown-menu">
+							<li><a href="${path}/member/address.do">주소검색</a></li>
 							<li><a href="${path}/member/login.do">로그인 (Session)</a></li>
 							<li><a href="${path}/member/logout.do">로그아웃 (Session)</a></li>
 						</ul>

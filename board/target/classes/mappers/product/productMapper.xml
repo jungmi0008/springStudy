@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 다른 매퍼와 중복되지 않도록 namespace를 기재한다. -->
+<mapper namespace="product">
+
+	<!-- 상품 목록 -->
+	<select id="product_list" resultType="com.product.dto.ProductDTO">
+	select	*
+	from	product
+	order by product_name
+	</select>
+	
+	<!-- 상품 상세 정보 -->
+	<select id="detail_product" resultType="com.product.dto.ProductDTO">
+	select	*
+	from	product
+	where	product_id = #{product_id}
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

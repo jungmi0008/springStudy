@@ -77,6 +77,11 @@ public class MemberController {
 		return mav; //페이지로 이동
 	}
 	
+	//주소 검색
+	@RequestMapping("address.do")
+	public String address() {
+		return "member/address";
+	}
 	
 }
 

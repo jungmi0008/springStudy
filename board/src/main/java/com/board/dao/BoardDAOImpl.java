@@ -67,6 +67,13 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		return sql.selectList(namespace + ".listPage", data);
 	}
+
+	// 첨부파일 삭제
+	@Override
+	public void deleteFile(String fullName) {
+		//sqlSession.delete("board.deleteFile", fullName);
+		
+	}
 	
 	
 	
