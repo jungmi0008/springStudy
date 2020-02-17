@@ -40,6 +40,7 @@ public class SampleController {
 	public void basicGet() {
 		log.info("basic get..........");
 	}
+	
 	@GetMapping("/basicOnlyGet")
 	public void basicGet2() {
 		log.info("basic get only get..........");
